@@ -3,7 +3,7 @@
 
 ![C](https://img.shields.io/badge/language-C-red)
 
-# Cache-Simulator 🖥️
+# Cache Simulator 🖥️
 
 🧮 A C program that simulates a memory cache using the LFU replacement policy
 
