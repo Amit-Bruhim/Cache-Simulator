@@ -1,4 +1,3 @@
-/* 211548045 amit bruhim */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,7 +25,6 @@ typedef struct cache_s
 int getSet(uchar s, uchar b, long off);
 int getOffset(uchar b, long int off);
 int getTag(uchar s, uchar b, long int off);
-int getLastBlock(uchar b, long int off);
 
 // initialize the cache by the given parameters
 cache_t initialize_cache(uchar s, uchar t, uchar b, uchar E)
@@ -205,14 +203,6 @@ int getTag(uchar s, uchar b, long int off)
     return off >> (s + b);
 }
 
-// get last block
-int getLastBlock(uchar b, long int off)
-{
-    int mask1 = off >> b;
-    int mask2 = off << b;
-    return mask2;
-}
-
 // get offset
 int getOffset(uchar b, long int off)
 {
@@ -228,7 +218,7 @@ void print_cache(cache_t cache)
 
     for (int i = 0; i < S; i++)
     {
-        printf("Set %d\n", i);
+        printf("\033[0;32mSet %d\033[0m\n", i);
         for (int j = 0; j < cache.E; j++)
         {
             printf("%1d %d 0x%0*lx ", cache.cache[i][j].valid,
@@ -246,15 +236,15 @@ void print_cache(cache_t cache)
 int main()
 {
     int n;
-    printf("Size of data: ");
+    printf("\033[0;32mSize of data: \033[0m");
     scanf("%d", &n);
     uchar *mem = malloc(n);
-    printf("Input data >> ");
+    printf("\033[0;32mInput data >> \033[0m");
     for (int i = 0; i < n; i++)
         scanf("%hhd", mem + i);
 
     int s, t, b, E;
-    printf("s t b E: ");
+    printf("\033[0;32ms t b E: \033[0m");
     scanf("%d %d %d %d", &s, &t, &b, &E);
     cache_t cache = initialize_cache(s, t, b, E);
 
